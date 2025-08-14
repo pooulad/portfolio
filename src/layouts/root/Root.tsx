@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import { CacheProvider } from "@emotion/react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import useLanguage from "../../hooks/useLanguage";
@@ -12,8 +12,6 @@ import Footer from "../../components/global/footer/Footer";
 
 function Root() {
   const theme = useTheme();
-
-  const [loading, setLoading] = useState<boolean>(true);
 
   const { dir } = useAppSelector(root);
 
