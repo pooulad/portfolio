@@ -1,6 +1,6 @@
 import { Box, Button, useTheme } from "@mui/material";
 import useActiveUrlPath from "../../../hooks/useActiveUrlPath";
-import { BreadCrumbPaths } from "./BreadCrumbPaths";
+import { BreadCrumbPaths } from "./breadCrumbPaths";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 import { useTranslation } from "react-i18next";
