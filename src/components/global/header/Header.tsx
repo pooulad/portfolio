@@ -14,6 +14,7 @@ import { ColorModeContext } from "../../../configs/theme/MuiTheme";
 import HeaderGSAPAnimation from "../animation/gsap/headerGSAPAnimation";
 import { Icons } from "../lucideIcon/LucideIcon";
 import LanguagePopover from "./LanguagePopover";
+import { useTranslation } from "react-i18next";
 
 function Header() {
   const colorMode = useContext(ColorModeContext);
@@ -21,6 +22,8 @@ function Header() {
   const navigate = useNavigate();
 
   const theme = useTheme();
+
+  const { t } = useTranslation();
 
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
@@ -132,13 +135,15 @@ function Header() {
       </Box>
       {isSmall ? (
         <Fragment>
-          <Box sx={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            alignItems: "center"
-          }}>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
             <LanguagePopover />
             <IconButton
               ref={menuIconRef}
@@ -169,7 +174,7 @@ function Header() {
                 closeMenu();
               }}
             >
-              Home
+              {t("home")}
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -177,7 +182,7 @@ function Header() {
                 closeMenu();
               }}
             >
-              About
+              {t("about")}
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -185,7 +190,7 @@ function Header() {
                 closeMenu();
               }}
             >
-              Projects
+              {t("projects")}
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -193,7 +198,7 @@ function Header() {
                 closeMenu();
               }}
             >
-              Resume
+              {t("resume")}
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -201,7 +206,7 @@ function Header() {
                 closeMenu();
               }}
             >
-              Github
+              {t("github")}
             </MenuItem>
           </Menu>
         </Fragment>
