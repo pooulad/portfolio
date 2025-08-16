@@ -39,7 +39,7 @@
 **[Pooulad](https://github.com/pooulad)**  
 Full-Stack Developer • Open-Source Enthusiast  
 
-📧 Email: pooulad@email.com  
+📧 Email: pooulad@gmail.com  
 🐦 Linkedin: [Linkedin](https://www.linkedin.com/in/amir-mahdi-pouladi-803748283)  
 
 ---
