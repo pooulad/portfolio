@@ -23,11 +23,6 @@ function Root() {
     dispatch(rootDirectionCacheAction(currentLanguage?.dir || "ltr"));
   }, [currentLanguage]);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setLoading(false), 500);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
   return (
     <CacheProvider value={dir === "rtl" ? cacheRtl : cacheLtr}>
       <Box
@@ -38,7 +33,6 @@ function Root() {
           overflow: "visible",
         }}
       >
-        {/* <GlassySpinner loading={loading} /> */}
         <Header /> 
         <SnowParticle />
         <Box

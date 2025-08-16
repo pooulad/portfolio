@@ -1,12 +1,17 @@
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import ProjectCard from "./Card";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { LeftArrowIcon, RightArrowIcon } from "../../assets/icons";
 import { projects } from "../../components/project/items";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 
 function Project() {
   const theme = useTheme();
+
+  const { i18n } = useTranslation();
+
+  const isFa = i18n.language === "fa";
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +34,11 @@ function Project() {
   };
 
   const scrollByAmount = (amount: number) => {
-    scrollRef.current?.scrollBy({ left: amount, behavior: "smooth" });
+    if (isFa) {
+      scrollRef.current?.scrollBy({ left: -amount, behavior: "smooth" });
+    } else {
+      scrollRef.current?.scrollBy({ left: amount, behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
@@ -78,44 +87,89 @@ function Project() {
         },
       }}
     >
-      <IconButton
-        onClick={() => scrollByAmount(-300)}
-        disabled={!canScrollLeft}
-        sx={{
-          position: "absolute",
-          left: 10,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 2,
-          boxShadow: 1,
-          opacity: canScrollLeft ? 1 : 0.4,
-        }}
-      >
-        <LeftArrowIcon
-          width={30}
-          height={30}
-          fill={theme.palette.primary.main}
-        />
-      </IconButton>
-      <IconButton
-        onClick={() => scrollByAmount(300)}
-        disabled={!canScrollRight}
-        sx={{
-          position: "absolute",
-          right: 10,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 2,
-          boxShadow: 1,
-          opacity: canScrollRight ? 1 : 0.4,
-        }}
-      >
-        <RightArrowIcon
-          width={30}
-          height={30}
-          fill={theme.palette.primary.main}
-        />
-      </IconButton>
+      {isFa ? (
+        <Fragment>
+          <IconButton
+            onClick={() => scrollByAmount(300)}
+            disabled={!canScrollRight}
+            sx={{
+              position: "absolute",
+              right: 10,
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 2,
+              boxShadow: 1,
+              opacity: canScrollRight ? 1 : 0.4,
+            }}
+          >
+            <LeftArrowIcon
+              width={30}
+              height={30}
+              fill={theme.palette.primary.main}
+            />
+          </IconButton>
+          <IconButton
+            onClick={() => scrollByAmount(-300)}
+            disabled={!canScrollLeft}
+            sx={{
+              position: "absolute",
+              left: 10,
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 2,
+              boxShadow: 1,
+              opacity: canScrollLeft ? 1 : 0.4,
+            }}
+          >
+            <RightArrowIcon
+              width={30}
+              height={30}
+              fill={theme.palette.primary.main}
+            />
+          </IconButton>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <IconButton
+            onClick={() => scrollByAmount(-300)}
+            disabled={!canScrollLeft}
+            sx={{
+              position: "absolute",
+              left: 10,
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 2,
+              boxShadow: 1,
+              opacity: canScrollLeft ? 1 : 0.4,
+            }}
+          >
+            <LeftArrowIcon
+              width={30}
+              height={30}
+              fill={theme.palette.primary.main}
+            />
+          </IconButton>
+          <IconButton
+            onClick={() => scrollByAmount(300)}
+            disabled={!canScrollRight}
+            sx={{
+              position: "absolute",
+              right: 10,
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 2,
+              boxShadow: 1,
+              opacity: canScrollRight ? 1 : 0.4,
+            }}
+          >
+            <RightArrowIcon
+              width={30}
+              height={30}
+              fill={theme.palette.primary.main}
+            />
+          </IconButton>
+        </Fragment>
+      )}
       <Box
         sx={{
           width: "100%",
@@ -123,7 +177,7 @@ function Project() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-           height: "78vh",
+          height: "78vh",
         }}
       >
         <Box
@@ -152,7 +206,7 @@ function Project() {
             flexDirection: "row",
             justifyContent: "flex-start",
             alignItems: "center",
-          
+
             overflowX: "auto",
             overflowY: "hidden",
             scrollBehavior: "smooth",
