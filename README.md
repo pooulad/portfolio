@@ -13,7 +13,8 @@
 - 📦 **State management with Redux**
 - 🎨 **UI components powered by Material-UI (MUI)**
 - 🔗 **API calls with Axios**
-- 🧩 **Modular architecture & Reuseable components**  
+- 🧩 **Modular architecture & Reuseable components**
+- 📱 **Responsive design** (optimized for mobile, tablet, desktop)
 
 ---
 
