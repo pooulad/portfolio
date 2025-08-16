@@ -22,7 +22,8 @@
 - [ ] Change fa font
 - [ ] Improve TypeScript type
 - [ ] Improve **TypeScript typing**
-- [ ] Add PWA support  
+- [ ] Add PWA support
+- [ ] Clean code(required pages)
 
 ---
 
