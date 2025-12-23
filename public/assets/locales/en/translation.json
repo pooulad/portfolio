@@ -60,5 +60,8 @@
   "failed_to_load_data": "Failed to load data",
   "top_stared_repos": "Top Starred Repositories",
   "latest_pull_requests": "Latest pull requests",
-  "recent_github_activities": "Recent GitHub Activities"
+  "recent_github_activities": "Recent GitHub Activities",
+  "certificates": "Certificates",
+  "provider": "Provider",
+  "issued": "Issued"
 }

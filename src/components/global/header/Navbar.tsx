@@ -37,6 +37,11 @@ const links: NavbarLinkProps[] = [
     icon: <Icons.fileCode viewBox="0 0 24 15" height={50} size={20} />,
     label: "github",
   },
+  {
+    to: "/certificates",
+    icon: <Icons.award viewBox="0 0 24 15" height={50} size={20} />,
+    label: "certificates",
+  },
 ];
 
 function Navbar() {
