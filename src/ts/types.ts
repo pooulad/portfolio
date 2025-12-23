@@ -101,3 +101,15 @@ export interface Project {
   skills: string[];
 }
 // Project page
+
+// Certificates page
+export interface Certification {
+  id: string
+  title: string
+  provider: string
+  issuedAt: string
+  image: string
+  skills: string[]
+  link?: string
+}
+// Certificates page

@@ -6,6 +6,7 @@ import About from "../../pages/about/About";
 import Resume from "../../pages/resume/Resume";
 import Project from "../../pages/project/Project";
 import Github from "../../pages/github/Github";
+import Certificate from "../../pages/certificate/Certificate";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "/github",
         element: <Github />,
+      },
+      {
+        path: "/certificates",
+        element: <Certificate />,
       },
     ],
   },
