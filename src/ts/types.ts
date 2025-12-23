@@ -107,7 +107,7 @@ export interface Certification {
   id: string
   title: string
   provider: string
-  issuedAt: string
+  date: string
   image: string
   skills: string[]
   link?: string

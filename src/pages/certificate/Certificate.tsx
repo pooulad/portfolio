@@ -14,11 +14,13 @@ import Micro_Front_End_Architecture_with_React from "../../assets/images/certifi
 import Rate_Type_Certificate from "../../assets/images/certificates/Rate_Type_Certificate.jpeg";
 import React_Essential_Training from "../../assets/images/certificates/React_Essential_Training.jpeg";
 import { useTranslation } from "react-i18next";
+import { Certification } from "../../ts/types";
 
 
-export const CertificatesData = [
+export const CertificatesData: Certification[] = [
   {
     id: uuidv4(),
+    link: "https://www.linkedin.com/learning/certificates/f78a2f8a5679d6940fad8dd05518a9ef7e5ea672a76e4514d03f00f9810fea0a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B%2BeyJFoZtR%2Bi%2FWoZG9jfP7Q%3D%3D",
     title: "Become a Django Developer",
     provider: "Linkedin Learning",
     date: "November 13, 2025",
@@ -27,6 +29,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.linkedin.com/learning/certificates/55879a7f899270e71cebebc5874654582efcb1725d58226a400f9a8e1ae5fb1d?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B%2BeyJFoZtR%2Bi%2FWoZG9jfP7Q%3D%3D",
     title: "Micro Front-End Architecture with React",
     provider: "Linkedin Learning",
     date: "November 17, 2025",
@@ -35,6 +38,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.maktabkhooneh.org/certificates/MK-KZNN1O/",
     title: "Maktabkhone Git And GitHub",
     provider: "Maktabkhone",
     date: "November 18, 2025",
@@ -43,6 +47,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.maktabkhooneh.org/certificates/MK-BNZGRX/",
     title: "Maktabkhone Django 3.2",
     provider: "Maktabkhone",
     date: "November 13, 2025",
@@ -51,6 +56,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.linkedin.com/learning/certificates/75cdd84800728506d6eb57a6aac469d47d63618c6e48eee7c04bc19486bc66d8?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BueZHNVq2RKaFhWk8GycIhw%3D%3D",
     title: "Build a Microservice with Go",
     provider: "Linkedin Learning",
     date: "October 25, 2025",
@@ -59,6 +65,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.linkedin.com/learning/certificates/6d4a51dc9fc3142e6744f8aa0c502fe431e32887a018cad5861da1e07d61119f?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BueZHNVq2RKaFhWk8GycIhw%3D%3D",
     title: "Getting Started with Python",
     provider: "Linkedin Learning",
     date: "October 10, 2025",
@@ -67,6 +74,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.linkedin.com/learning/certificates/13eb57e4e2a42cf816b0e4c9f09bd41fea97e7537d716cbc58054e1ef2d619cc?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BueZHNVq2RKaFhWk8GycIhw%3D%3D",
     title: "Go Essentials: Concurrency & High-Performance Apps",
     provider: "Linkedin Learning",
     date: "October 25, 2025",
@@ -75,6 +83,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.maktabkhooneh.org/certificates/MK-QTW4PO/",
     title: "Maktabkhone Python Programming",
     provider: "Maktabkhone",
     date: "October 28, 2025",
@@ -83,6 +92,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.linkedin.com/learning/certificates/2a4d4c14532cb616a2614fd2d52d4526f8e9f1eb69f2b3c1508d443245c51121?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BueZHNVq2RKaFhWk8GycIhw%3D%3D",
     title: "React Essential Training",
     provider: "LinkedIn Learning",
     date: "September 19, 2025",
@@ -91,6 +101,7 @@ export const CertificatesData = [
   },
   {
     id: uuidv4(),
+    link: "https://www.ratatype.com/en/u8069072/certificate/en_new/",
     title: "Rate Type Certificate",
     provider: "Linkedin Learning",
     date: "September 14, 2025",
