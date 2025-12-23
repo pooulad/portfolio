@@ -1,8 +1,9 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { Certification } from "../../../ts/types";
 
 interface Props {
-  cert: any;
+  cert: Certification;
 }
 
 export default function CertificateRow({ cert }: Props) {
@@ -20,7 +21,8 @@ export default function CertificateRow({ cert }: Props) {
         padding: 2,
         border: "1px solid",
         borderColor: "#2a3546",
-        backgroundColor: "#121823",
+        borderRadius: "20px",
+        backgroundColor: theme.palette.background.paper,
         position: "relative",
         [theme.breakpoints.down("md")]: {
           flexDirection: "column",
@@ -45,8 +47,14 @@ export default function CertificateRow({ cert }: Props) {
         }}
       >
         <img
+          onClick={() =>
+            window.open(
+              cert.link,
+              "_blank"
+            )
+          }
           src={cert.image}
-          style={{ width: "100%", display: "block" }}
+          style={{ width: "100%", display: "block", cursor: "pointer" }}
         />
       </Box>
       <Box sx={{ flex: 1 }}>
