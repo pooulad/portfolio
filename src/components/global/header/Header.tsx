@@ -208,6 +208,14 @@ function Header() {
             >
               {t("github")}
             </MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate("/certificates");
+                closeMenu();
+              }}
+            >
+              {t("certificates")}
+            </MenuItem>
           </Menu>
         </Fragment>
       ) : (

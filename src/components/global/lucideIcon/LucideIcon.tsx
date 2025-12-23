@@ -10,6 +10,7 @@ import {
   Moon,
   Sun,
   Menu,
+  Award
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -25,4 +26,5 @@ export const Icons = {
   moon: Moon,
   sun: Sun,
   menu: Menu,
+  award: Award
 };
