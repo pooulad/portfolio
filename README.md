@@ -11,20 +11,11 @@
 - 🎵 **Background music** for a better experience
 - 🎬 **Smooth animations with GSAP**
 - 📦 **State management with Redux**
+- 📱 **Responsive design** (optimized for mobile, tablet, desktop)
 - 🎨 **UI components powered by Material-UI (MUI)**
 - 🔗 **API calls with Axios**
 - 🧩 **Modular architecture & Reuseable components**
-- 📱 **Responsive design** (optimized for mobile, tablet, desktop)
-
----
-
-## 📌 Todos
-- [ ] Change fa font
-- [ ] Improve TypeScript type
-- [ ] Improve **TypeScript typing**
-- [ ] Add PWA support
-- [ ] Clean code(required pages)
-
+- 📱 **Installable PWA** for offline access and a native app-like experience
 ---
 
 ## Demo
