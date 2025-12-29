@@ -63,5 +63,7 @@
   "recent_github_activities": "فعالیت‌های اخیر در گیت‌هاب",
   "certificates": "گواهی‌ها",
   "provider": "ارائه‌دهنده",
-  "issued": "صادر شده"
+  "issued": "صادر شده",
+  "close": "بستن",
+  "credential_id": "شناسه اعتبار"
 }

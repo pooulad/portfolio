@@ -63,5 +63,7 @@
   "recent_github_activities": "Recent GitHub Activities",
   "certificates": "Certificates",
   "provider": "Provider",
-  "issued": "Issued"
+  "issued": "Issued",
+  "close": "Close",
+  "credential_id": "Credential ID"
 }

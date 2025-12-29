@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { useRef } from "react";
 import CertificatesGSAPAnimation from "../../components/global/animation/gsap/certificateGSAPAnimation";
 import CertificateRow from "../../components/certificate/certificateRow/CertificateRow";
@@ -118,6 +118,8 @@ function Certificate() {
   CertificatesGSAPAnimation({ listRef });
   // GSAP
 
+  const theme = useTheme()
+
   return (
     <Box
       sx={{
@@ -136,7 +138,16 @@ function Certificate() {
           justifyContent: "center",
         }}
       >
-        <Box sx={{ width: "90%", display: "flex", flexDirection: "column", gap: 4 }}>
+        <Box sx={{
+          width: "90%",
+          display: "flex",
+          flexDirection: "column",
+          gap: 4,
+          [theme.breakpoints.down("md")]: {
+            justifyContent: "center",
+            alignItems: "center"
+          },
+        }}>
           <Typography
             variant="h4"
           >
