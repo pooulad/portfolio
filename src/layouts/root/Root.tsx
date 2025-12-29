@@ -9,11 +9,15 @@ import Header from "../../components/global/header/Header";
 import { root, rootDirectionCacheAction } from "./rootSlice";
 import SnowParticle from "../../components/global/particles/SnowParticle";
 import Footer from "../../components/global/footer/Footer";
+import CertificateModal from "../../components/global/certificateModal/CertificateModal";
+import { certificateModal } from "../../components/global/certificateModal/certificateModal";
 
 function Root() {
   const theme = useTheme();
 
   const { dir } = useAppSelector(root);
+
+  const { openModal: certificateModalIsOpen } = useAppSelector(certificateModal)
 
   const dispatch = useAppDispatch();
 
@@ -33,7 +37,7 @@ function Root() {
           overflow: "visible",
         }}
       >
-        <Header /> 
+        <Header />
         <SnowParticle />
         <Box
           id="modalContainer"
@@ -70,6 +74,7 @@ function Root() {
           </Box>
           <Footer />
         </Box>
+        {certificateModalIsOpen && <CertificateModal />}
       </Box>
     </CacheProvider>
   );

@@ -1,6 +1,8 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Tooltip, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Certification } from "../../../ts/types";
+import { useAppDispatch } from "../../../app/hooks";
+import { certificateModalOpenAction } from "../../global/certificateModal/certificateModal";
 
 interface Props {
   cert: Certification;
@@ -10,6 +12,8 @@ export default function CertificateRow({ cert }: Props) {
   const theme = useTheme()
 
   const { t } = useTranslation()
+
+  const dispatch = useAppDispatch();
 
   return (
     <Box
@@ -47,18 +51,46 @@ export default function CertificateRow({ cert }: Props) {
         }}
       >
         <img
-          onClick={() =>
-            window.open(
-              cert.link,
-              "_blank"
-            )
-          }
+          onClick={() => {
+            dispatch(
+              certificateModalOpenAction({
+                certificateData: cert
+              })
+            );
+          }}
           src={cert.image}
           style={{ width: "100%", display: "block", cursor: "pointer" }}
         />
       </Box>
       <Box sx={{ flex: 1 }}>
-        <Typography variant="h6" sx={{ color: theme.palette.primary.main }}>{cert.title}</Typography>
+        <Tooltip
+          onClick={() => {
+            dispatch(
+              certificateModalOpenAction({
+                certificateData: cert
+              })
+            );
+          }}
+          title={cert.title}
+          placement="top"
+          arrow
+        >
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.primary.main,
+              maxWidth: "100%",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              cursor: "pointer",
+            }}
+          >
+            {cert.title.length > 30
+              ? cert.title.slice(0, 30) + "..."
+              : cert.title}
+          </Typography>
+        </Tooltip>
         <Typography sx={{ color: "#9aa4b2", fontSize: "14px", [theme.breakpoints.down("md")]: { textAlign: "center" } }}>
           {t("provider")}: {cert.provider}
         </Typography>
@@ -100,6 +132,6 @@ export default function CertificateRow({ cert }: Props) {
           opacity: 0,
         }}
       />
-    </Box>
+    </Box >
   );
 }
