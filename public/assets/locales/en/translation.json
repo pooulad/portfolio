@@ -65,5 +65,6 @@
   "provider": "Provider",
   "issued": "Issued",
   "close": "Close",
-  "credential_id": "Credential ID"
+  "credential_id": "Credential ID",
+  "see_resume": "See Resume"
 }
