@@ -65,5 +65,6 @@
   "provider": "ارائه‌دهنده",
   "issued": "صادر شده",
   "close": "بستن",
-  "credential_id": "شناسه اعتبار"
+  "credential_id": "شناسه اعتبار",
+  "see_resume": "مشاهده رزومه"
 }
