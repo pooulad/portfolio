@@ -3,7 +3,11 @@ import { useRef } from "react";
 import CertificatesGSAPAnimation from "../../components/global/animation/gsap/certificateGSAPAnimation";
 import CertificateRow from "../../components/certificate/certificateRow/CertificateRow";
 import { v4 as uuidv4 } from 'uuid';
+import ProgrammingWithGoogleGo from "../../assets/images/certificates/ProgrammingWithGoogleGo.jpeg";
 import Become_a_Django_Developer from "../../assets/images/certificates/Become_a_Django_Developer.jpeg";
+import ConcurrencyInGo from "../../assets/images/certificates/ConcurrencyInGo.jpeg";
+import FunctionsMethodsAndInterfacesInGo from "../../assets/images/certificates/FunctionsMethodsAndInterfacesInGo.jpeg";
+import GettingStartedWithGo from "../../assets/images/certificates/GettingStartedWithGo.jpeg";
 import Build_a_Microservice_with_Go from "../../assets/images/certificates/Build_a_Microservice_with_Go.jpeg";
 import Getting_Started_with_Python from "../../assets/images/certificates/Getting_Started_with_Python.jpeg";
 import Go_Essentials_Concurrency_Connectivity_and_HighPerformance_Apps from "../../assets/images/certificates/Go_Essentials_Concurrency_Connectivity_and_High-Performance_Apps.jpeg";
@@ -18,6 +22,42 @@ import { Certification } from "../../ts/types";
 
 
 export const CertificatesData: Certification[] = [
+  {
+    id: uuidv4(),
+    link: "https://www.coursera.org/account/accomplishments/specialization/WKFD8X169XGL",
+    title: "Programming with Google Go",
+    provider: "Coursera",
+    date: "January 24, 2025",
+    image: ProgrammingWithGoogleGo,
+    skills: ["Go (Programming Language)", "Data Structures", "Computer Programming Tools"],
+  },
+  {
+    id: uuidv4(),
+    link: "https://www.coursera.org/account/accomplishments/records/8POPNMYZXDY7",
+    title: "Concurrency in Go",
+    provider: "Coursera",
+    date: "December 1, 2025",
+    image: ConcurrencyInGo,
+    skills: ["Go (Programming Language)", "Operating Systems", "Algorithms", "System Programming"],
+  },
+  {
+    id: uuidv4(),
+    link: "https://www.coursera.org/account/accomplishments/records/4RAONU5BEBQ1",
+    title: "Functions, Methods, and Interfaces in Go",
+    provider: "Coursera",
+    date: "December 1, 2025",
+    image: FunctionsMethodsAndInterfacesInGo,
+    skills: ["Software Design", "Object Oriented Programming (OOP)", "Functional Design"],
+  },
+  {
+    id: uuidv4(),
+    link: "https://www.coursera.org/account/accomplishments/records/O5I048EJZBCD",
+    title: "Getting Started with Go",
+    provider: "Coursera",
+    date: "December 1, 2025",
+    image: GettingStartedWithGo,
+    skills: ["Data Access", "Debugging", "Back-End Web Development", "System Programming"],
+  },
   {
     id: uuidv4(),
     link: "https://www.linkedin.com/learning/certificates/f78a2f8a5679d6940fad8dd05518a9ef7e5ea672a76e4514d03f00f9810fea0a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B%2BeyJFoZtR%2Bi%2FWoZG9jfP7Q%3D%3D",
