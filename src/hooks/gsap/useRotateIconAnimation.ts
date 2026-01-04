@@ -1,7 +1,8 @@
 import gsap from "gsap";
+import { MouseEventHandler } from "react";
 
 export default function useRotateIconAnimation() {
-  const handleEnterIconAnimation = (event: any) => {
+  const handleEnterIconAnimation: MouseEventHandler<HTMLElement> = (event) => {
     const target = event.currentTarget;
     gsap.to(target, {
       scale: 1.2,
@@ -10,7 +11,7 @@ export default function useRotateIconAnimation() {
       ease: "power2.out",
     });
   };
-  const handleLeaveIconAnimation = (event: any) => {
+  const handleLeaveIconAnimation: MouseEventHandler<HTMLElement> = (event) => {
     const target = event.currentTarget;
     gsap.to(target, {
       scale: 1,
@@ -19,6 +20,5 @@ export default function useRotateIconAnimation() {
       ease: "power2.out",
     });
   };
-
   return { handleEnterIconAnimation, handleLeaveIconAnimation };
 }

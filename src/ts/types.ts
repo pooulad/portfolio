@@ -1,6 +1,6 @@
 import { SnackbarOrigin } from "@mui/material";
 import { Action, Dispatch } from "@reduxjs/toolkit";
-import { ReactNode } from "react";
+import { FC, ReactNode, SVGProps } from "react";
 
 // MUI snackbar
 export interface ISnackbarState extends SnackbarOrigin {
@@ -80,15 +80,77 @@ export interface GithubPull {
   state: string;
   html_url: string;
   created_at: string;
-  repo_name: string;
+  repository_url: string;
 }
+
+export interface PushEventPayload {
+  ref: string;
+  [key: string]: unknown;
+}
+
+export interface PullRequestEventPayload {
+  action: string;
+  number: number;
+  pull_request: {
+    id: number;
+    title: string;
+    state: string;
+    html_url: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
+export interface IssuesEventPayload {
+  action: string;
+  issue: {
+    id: number;
+    title: string;
+    state: string;
+    html_url: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
+type GithubEventPayload = PushEventPayload | PullRequestEventPayload | IssuesEventPayload | Record<string, unknown>;
 
 export interface GithubEvent {
   id: string;
-  type: string;
+  type: "PushEvent" | "PullRequestEvent" | "IssuesEvent" | string;
   repo: { name: string };
   created_at: string;
-  payload: any;
+  payload: GithubEventPayload;
+}
+
+export interface IEvents {
+  data: GithubEvent[];
+  error: boolean;
+  message: string;
+}
+
+export interface IRepos {
+  data: GithubRepo[];
+  error: boolean;
+  message: string;
+}
+
+export interface IEvents {
+  data: GithubEvent[];
+  error: boolean;
+  message: string;
+}
+
+export interface IPrs {
+  data: GithubPull[];
+  error: boolean;
+  message: string;
+}
+
+export interface IProfile {
+  data: GithubProfileInfo;
+  error: boolean;
+  message: string;
 }
 // Github page
 
@@ -113,3 +175,11 @@ export interface Certification {
   link?: string
 }
 // Certificates page
+
+// Skill page
+export interface ISkill {
+  label: string;
+  icon: FC<SVGProps<SVGSVGElement>>
+}
+// Skill page
+

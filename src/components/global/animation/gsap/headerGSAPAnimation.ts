@@ -1,17 +1,17 @@
 import { useTheme } from "@mui/material";
 import gsap from "gsap";
-import { useEffect, useState } from "react";
+import { MouseEvent, RefObject, useEffect, useState } from "react";
 
 interface HeaderGSAPAnimationProps {
-  musicRef: any;
-  musicIconRef: any;
-  tweenRef: any;
-  switchButtonRef: any;
-  buttonRef: any;
+  musicRef: RefObject<HTMLAudioElement | null>;
+  musicIconRef: RefObject<SVGSVGElement | null>;
+  tweenRef: RefObject<GSAPTween | null>;
+  switchButtonRef: RefObject<SVGSVGElement | null>;
+  buttonRef: RefObject<HTMLButtonElement | null>;
+  menuIconRef: RefObject<HTMLButtonElement | null>;
   colorMode: {
     toggleColorMode: () => void;
   };
-  menuIconRef: any;
 }
 
 export default function HeaderGSAPAnimation({
@@ -77,7 +77,7 @@ export default function HeaderGSAPAnimation({
   // toggleSwitchButton
 
   // handleLogoShake
-  const handleLogoShake = (event: any) => {
+  const handleLogoShake = (event: MouseEvent<HTMLButtonElement>) => {
     gsap.fromTo(
       event.currentTarget,
       { rotate: 0 },

@@ -1,13 +1,15 @@
 import { Box, Typography, Grid2 as Grid, useTheme } from "@mui/material";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material/styles";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
+import { ISkill } from "../../../ts/types";
+import { RefObject } from "react";
 // import LightBulb from "../../../assets/svg/LightBulb.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SkillCard = styled(Box)(({ theme }: any) => ({
+const SkillCard = styled(Box)(({ theme }) => ({
   position: "relative",
   overflow: "hidden",
   borderRadius: "16px",
@@ -23,7 +25,7 @@ const SkillCard = styled(Box)(({ theme }: any) => ({
   },
 }));
 
-const Spotlight = styled(Box)(({ theme }: any) => ({
+const Spotlight = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: 0,
   left: 0,
@@ -41,8 +43,8 @@ const Spotlight = styled(Box)(({ theme }: any) => ({
 }));
 
 interface SkillProps {
-  skillBoxRef: any;
-  skills: any[];
+  skillBoxRef: RefObject<HTMLDivElement | null>;
+  skills: ISkill[];
   skillType: string;
 }
 

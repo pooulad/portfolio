@@ -26,6 +26,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import LoadingSpinner from "../../components/global/loading/loadingSpinner/LoadingSpinner";
 import GithubGSAPAnimation from "../../components/global/animation/gsap/githubGSAPAnimation";
 import { ForkIcon, StarIcon } from "../../assets/icons";
+import { IssuesEventPayload, PullRequestEventPayload, PushEventPayload } from "../../ts/types";
 gsap.registerPlugin(ScrollTrigger);
 
 const formatDate = (dateStr: string) =>
@@ -336,7 +337,7 @@ const Github: FC = () => {
                     color="text.secondary"
                     sx={{ mb: 1 }}
                   >
-                    Repository: {pr.repo_name}
+                    Repository: {pr.repository_url}
                   </Typography>
                   <Typography
                     variant="caption"
@@ -393,36 +394,43 @@ const Github: FC = () => {
               const date = formatDate(event.created_at);
               let description = "";
               switch (event.type) {
-                case "PushEvent":
-                  description = `Pushed to ${event.payload.ref?.replace("refs/heads/", "")}`;
+                case "PushEvent": {
+                  const payload = event.payload as PushEventPayload;
+                  description = `Pushed to ${payload.ref?.replace("refs/heads/", "")}`;
                   break;
-                case "PullRequestEvent":
-                  description = `${event.payload.action} pull request`;
+                }
+                case "PullRequestEvent": {
+                  const payload = event.payload as PullRequestEventPayload;
+                  description = `${payload.action} pull request`;
                   break;
-                case "IssuesEvent":
-                  description = `${event.payload.action} issue`;
+                }
+                case "IssuesEvent": {
+                  const payload = event.payload as IssuesEventPayload;
+                  description = `${payload.action} issue`;
                   break;
+                }
                 default:
                   description = event.type;
               }
+
               return (
                 <Grid size={{ xs: 12, sm: 6, md: 4 }} key={event.id}>
                   <Paper
                     className="animate-card"
                     elevation={2}
                     sx={{
-                    p: 3,
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    borderRadius: 3,
-                    cursor: "pointer",
-                    transition: "transform 0.3s ease",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                      boxShadow: `0 8px 25px ${alpha(theme.palette.primary.main, 0.4)}`,
-                    },
-                  }}
+                      p: 3,
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      borderRadius: 3,
+                      cursor: "pointer",
+                      transition: "transform 0.3s ease",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                        boxShadow: `0 8px 25px ${alpha(theme.palette.primary.main, 0.4)}`,
+                      },
+                    }}
                     tabIndex={0}
                     aria-label={`${event.type} event on repository ${event.repo.name}`}
                   >

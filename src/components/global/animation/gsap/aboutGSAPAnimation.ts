@@ -1,14 +1,14 @@
-import { useEffect } from "react";
+import { RefObject, useEffect } from "react";
 import useFlipAnimation from "../../../../hooks/gsap/useFlipAnimation";
 import gsap from "gsap";
 
 interface AboutGSAPAnimationProps {
-  motorcycleImageRef: any;
+  motorcycleImageRef: RefObject<HTMLImageElement | null>;
   motorcycleImageID: string;
-  seeSkillsButtonRef: any;
-  techToolRef: any;
-  softRef: any;
-  langRef: any;
+  seeSkillsButtonRef: RefObject<HTMLButtonElement | null>;
+  techToolRef: RefObject<HTMLDivElement | null>;
+  softRef: RefObject<HTMLDivElement | null>;
+  langRef: RefObject<HTMLDivElement | null>;
 }
 
 export default function AboutGSAPAnimation({
@@ -51,7 +51,9 @@ export default function AboutGSAPAnimation({
 
   // techToolRef
   useEffect(() => {
-    const elements = techToolRef.current?.querySelectorAll(".skill-box");
+    const section = techToolRef.current;
+    if (!section) return;
+    const elements = section.querySelectorAll(".skill-box");
     gsap.fromTo(
       elements,
       { opacity: 0, y: 50, scale: 0.9 },
@@ -73,10 +75,12 @@ export default function AboutGSAPAnimation({
 
   // techToolRef spotLight
   useEffect(() => {
-    const cards = techToolRef.current?.querySelectorAll(".skill-card");
-    cards.forEach((card: any) => {
+    const section = techToolRef.current;
+    if (!section) return;
+    const cards = section.querySelectorAll<HTMLElement>(".skill-card");
+    cards.forEach((card) => {
       const spotlight = card.querySelector(".spotlight");
-      const handleMouseMove = (e: any) => {
+      const handleMouseMove = (e: MouseEvent) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -97,13 +101,20 @@ export default function AboutGSAPAnimation({
       card.addEventListener("mousemove", handleMouseMove);
       card.addEventListener("mouseenter", handleMouseEnter);
       card.addEventListener("mouseleave", handleMouseLeave);
+      return () => {
+        card.removeEventListener("mousemove", handleMouseMove);
+        card.removeEventListener("mouseenter", handleMouseEnter);
+        card.removeEventListener("mouseleave", handleMouseLeave);
+      };
     });
   }, []);
   // techToolRef spotLight
 
   // softRef
   useEffect(() => {
-    const elements = softRef.current?.querySelectorAll(".skill-box");
+    const section = softRef.current;
+    if (!section) return;
+    const elements = section.querySelectorAll<HTMLElement>(".skill-box");
     gsap.fromTo(
       elements,
       { opacity: 0, y: 50, scale: 0.9 },
@@ -125,14 +136,15 @@ export default function AboutGSAPAnimation({
 
   // softRef spotLight
   useEffect(() => {
-    const cards = softRef.current?.querySelectorAll(".skill-card");
-    cards.forEach((card: any) => {
+    const section = softRef.current;
+    if (!section) return;
+    const cards = section.querySelectorAll<HTMLElement>(".skill-card");
+    cards.forEach((card) => {
       const spotlight = card.querySelector(".spotlight");
-      const handleMouseMove = (e: any) => {
+      const handleMouseMove = (e: MouseEvent) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
         gsap.to(spotlight, {
           x: x - 75,
           y: y - 75,
@@ -155,7 +167,9 @@ export default function AboutGSAPAnimation({
 
   // langRef
   useEffect(() => {
-    const elements = langRef.current?.querySelectorAll(".skill-box");
+    const section = langRef.current;
+    if (!section) return;
+    const elements = section.querySelectorAll(".skill-box");
     gsap.fromTo(
       elements,
       { opacity: 0, y: 50, scale: 0.9 },
@@ -177,10 +191,12 @@ export default function AboutGSAPAnimation({
 
   // langRef spotLight
   useEffect(() => {
-    const cards = langRef.current?.querySelectorAll(".skill-card");
-    cards.forEach((card: any) => {
+    const section = langRef.current;
+    if (!section) return;
+    const cards = section.querySelectorAll<HTMLElement>(".skill-card");
+    cards.forEach((card) => {
       const spotlight = card.querySelector(".spotlight");
-      const handleMouseMove = (e: any) => {
+      const handleMouseMove = (e: MouseEvent) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;

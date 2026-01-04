@@ -1,4 +1,4 @@
-import { GithubEvent, GithubPull } from "./../../ts/types";
+import { GithubEvent, GithubPull, IEvents, IProfile, IPrs, IRepos } from "./../../ts/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import axiosMaker from "../../configs/api/axios";
@@ -9,14 +9,16 @@ import {
   GITHUB_GET_REPOS,
 } from "../../configs/api/list";
 import { GithubProfileInfo, GithubRepo } from "../../ts/types";
+import { AxiosError } from "axios";
 
 export const githubGetRepos = createAsyncThunk(
   "githubState/GithubGetRepos",
-  async (_, { rejectWithValue }: any) => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await axiosMaker.get(GITHUB_GET_REPOS);
       return res.data;
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as AxiosError;
       if (!err.response) {
         if (err?.code === "ECONNABORTED") {
           return rejectWithValue({
@@ -28,18 +30,19 @@ export const githubGetRepos = createAsyncThunk(
           });
         }
       }
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err?.response?.data);
     }
   }
 );
 
 export const githubGetProfile = createAsyncThunk(
   "githubState/GithubGetProfile",
-  async (_, { rejectWithValue }: any) => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await axiosMaker.get(GITHUB_GET_PROFILE);
       return res.data;
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as AxiosError;
       if (!err.response) {
         if (err?.code === "ECONNABORTED") {
           return rejectWithValue({
@@ -51,18 +54,19 @@ export const githubGetProfile = createAsyncThunk(
           });
         }
       }
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err?.response?.data);
     }
   }
 );
 
 export const githubGetEvents = createAsyncThunk(
   "githubState/GithubGetEvents",
-  async (_, { rejectWithValue }: any) => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await axiosMaker.get(GITHUB_GET_EVENTS);
       return res.data;
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as AxiosError;
       if (!err.response) {
         if (err?.code === "ECONNABORTED") {
           return rejectWithValue({
@@ -74,18 +78,19 @@ export const githubGetEvents = createAsyncThunk(
           });
         }
       }
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err?.response?.data);
     }
   }
 );
 
 export const githubGetPrs = createAsyncThunk(
   "githubState/GithubGetPrs",
-  async (_, { rejectWithValue }: any) => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await axiosMaker.get(GITHUB_GET_PRS);
       return res.data;
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as AxiosError;
       if (!err.response) {
         if (err?.code === "ECONNABORTED") {
           return rejectWithValue({
@@ -97,33 +102,17 @@ export const githubGetPrs = createAsyncThunk(
           });
         }
       }
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err?.response?.data);
     }
   }
 );
 
 export interface IGithubState {
   actionStatus: "pending" | "rejected" | "fulfilled" | "none";
-  profile: {
-    data: GithubProfileInfo;
-    error: boolean;
-    message: string;
-  };
-  repos: {
-    data: GithubRepo[];
-    error: boolean;
-    message: string;
-  };
-  events: {
-    data: GithubEvent[];
-    error: boolean;
-    message: string;
-  };
-  prs: {
-    data: GithubPull[];
-    error: boolean;
-    message: string;
-  };
+  profile: IProfile;
+  repos: IRepos;
+  events: IEvents;
+  prs: IPrs;
 }
 
 const initialState: IGithubState = {
@@ -262,13 +251,15 @@ export const githubSlice = createSlice({
         state.actionStatus = "fulfilled";
         state.prs.message = "success";
         state.prs.error = false;
-        state.prs.data = payload?.items.map((pr: any) => ({
+        state.prs.data = payload?.items.map((pr) => ({
           id: pr.id,
           title: pr.title,
           state: pr.state,
           html_url: pr.html_url,
           created_at: pr.created_at,
-          repo_name: pr.repository_url.split("/").pop(),
+          repository_url: pr.repository_url
+            ? pr.repository_url.split("/").pop() ?? ""
+            : "",
         }));
       }
     );
@@ -280,7 +271,7 @@ export const githubSlice = createSlice({
   },
 });
 
-export const {} = githubSlice.actions;
+export const { } = githubSlice.actions;
 
 export const github = (state: RootState) => state.github;
 

@@ -2,6 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { GithubIcon, LinkedinIcon, TelegramIcon } from "../../../assets/icons";
 import { useTranslation } from "react-i18next";
 import { socials } from "../../global/contactInfoList";
+import { MouseEventHandler, RefObject } from "react";
 
 const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
   github: GithubIcon,
@@ -10,9 +11,9 @@ const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
 };
 
 interface SocialProps {
-  socialsIconRef: any;
-  handleEnterIconAnimation: (event: any) => void;
-  handleLeaveIconAnimation: (event: any) => void;
+  socialsIconRef: RefObject<HTMLDivElement | null>;
+  handleEnterIconAnimation: MouseEventHandler<HTMLAnchorElement>;
+  handleLeaveIconAnimation: MouseEventHandler<HTMLAnchorElement>;
 }
 
 function Social({

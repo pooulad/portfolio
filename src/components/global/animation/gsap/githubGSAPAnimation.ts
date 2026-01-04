@@ -1,19 +1,19 @@
-import { useLayoutEffect, useEffect, useCallback } from "react";
+import { useLayoutEffect, useEffect, useCallback, RefObject } from "react";
 import SplitType from "split-type";
-import { GithubProfileInfo } from "../../../../ts/types";
+import { GithubProfileInfo, IEvents, IPrs, IRepos } from "../../../../ts/types";
 import gsap from "gsap";
 
 interface GithubGSAPAnimationProps {
   profileData: GithubProfileInfo;
-  avatarRef: any;
-  nameRef: any;
-  bioRef: any;
-  reposSectionRef: any;
-  prsSectionRef: any;
-  eventsSectionRef: any;
-  repos: any;
-  prs: any;
-  events: any;
+  avatarRef: RefObject<HTMLDivElement | null>;
+  nameRef: RefObject<HTMLDivElement | null>;
+  bioRef: RefObject<HTMLDivElement | null>;
+  reposSectionRef: RefObject<HTMLDivElement | null>;
+  prsSectionRef: RefObject<HTMLDivElement | null>;
+  eventsSectionRef: RefObject<HTMLDivElement | null>;
+  repos: IRepos;
+  prs: IPrs;
+  events: IEvents;
 }
 
 export default function GithubGSAPAnimation({
@@ -60,7 +60,7 @@ export default function GithubGSAPAnimation({
         return () => {
           try {
             split.revert();
-          } catch {}
+          } catch { }
         };
       });
     }, reposSectionRef);
@@ -102,7 +102,7 @@ export default function GithubGSAPAnimation({
         return () => {
           try {
             split.revert();
-          } catch {}
+          } catch { }
         };
       });
     }, reposSectionRef);
@@ -110,9 +110,10 @@ export default function GithubGSAPAnimation({
   }, [profileData?.name]);
 
   useEffect(() => {
-    if (!reposSectionRef.current) return;
+    const section = reposSectionRef.current;
+    if (!section) return;
     const ctx = gsap.context(() => {
-      const items = reposSectionRef.current.querySelectorAll(".animate-card");
+      const items = section.querySelectorAll<HTMLElement>(".animate-card");
       gsap.fromTo(
         items,
         { y: 50, opacity: 0 },
@@ -134,9 +135,10 @@ export default function GithubGSAPAnimation({
   }, [repos, prs, events]);
 
   useEffect(() => {
-    if (!prsSectionRef.current) return;
+    const section = prsSectionRef.current;
+    if (!section) return;
     const ctx = gsap.context(() => {
-      const items = prsSectionRef.current.querySelectorAll(".animate-card");
+      const items = section.querySelectorAll<HTMLElement>(".animate-card");
       gsap.fromTo(
         items,
         { y: 50, opacity: 0 },
@@ -158,9 +160,10 @@ export default function GithubGSAPAnimation({
   }, [repos, prs, events]);
 
   useEffect(() => {
-    if (!eventsSectionRef.current) return;
+    const section = eventsSectionRef.current;
+    if (!section) return;
     const ctx = gsap.context(() => {
-      const items = eventsSectionRef.current.querySelectorAll(".animate-card");
+      const items = section.querySelectorAll<HTMLElement>(".animate-card");
       gsap.fromTo(
         items,
         { y: 50, opacity: 0 },

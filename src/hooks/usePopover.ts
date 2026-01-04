@@ -2,11 +2,11 @@ import { useState } from "react";
 
 export default function usePopover(name: string) {
   const [anchorEl, setAnchorEl] = useState<
-    HTMLButtonElement | HTMLLIElement | null | any
+    HTMLButtonElement | HTMLLIElement | null
   >(null);
 
   const openPopover = (
-    event: React.MouseEvent<HTMLButtonElement | HTMLLIElement> | any
+    event: React.MouseEvent<HTMLButtonElement | HTMLLIElement>
   ) => {
     setAnchorEl(event.currentTarget);
   };

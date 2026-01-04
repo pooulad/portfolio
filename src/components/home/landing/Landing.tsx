@@ -2,17 +2,16 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Typewriter from "typewriter-effect";
 import ProgrammerImage from "../../../assets/images/programmer.png";
+import { RefObject } from "react";
 
 interface LandingProps {
-  programmerImageRef: any;
+  programmerImageRef: RefObject<HTMLImageElement | null>;
   handleFlipAnimation: () => void;
 }
 
 function Landing({ programmerImageRef, handleFlipAnimation }: LandingProps) {
   const theme = useTheme();
-
   const { t } = useTranslation();
-
   return (
     <Box
       sx={{

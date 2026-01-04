@@ -1,16 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, RefObject } from "react";
 
-export default function useOutsideAlerter(ref: any, setState: any) {
+export default function useOutsideAlerter<T extends HTMLElement>(
+  ref: RefObject<T>,
+  setState: (value: boolean) => void
+) {
   useEffect(() => {
-    function handleClickOutside(event: any) {
-      if (ref.current && !ref.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target;
+
+      if (
+        ref.current &&
+        target instanceof Node &&
+        !ref.current.contains(target)
+      ) {
         setState(false);
       }
-    }
-
+    };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, setState]);
 }

@@ -54,8 +54,9 @@ import {
   YarnIcon,
   PythonIcon,
 } from "../../assets/icons";
+import { ISkill } from "../../ts/types";
 
-const Languages = [
+const Languages: ISkill[] = [
   { label: "JavaScript", icon: JavascriptIcon },
   { label: "TypeScript", icon: TypescriptIcon },
   { label: "Go (Golang)", icon: GoIcon },
@@ -68,7 +69,7 @@ const Languages = [
   },
 ];
 
-const TechsTools = [
+const TechsTools: ISkill[] = [
   { label: "React.js", icon: ReactIcon },
   { label: "CSS", icon: CssIcon },
   { label: "Material UI", icon: MaterialUiIcon },
@@ -100,7 +101,7 @@ const TechsTools = [
   { label: "Linux (Ubuntu / Mint)", icon: LinuxIcon },
 ];
 
-const SoftSkills = [
+const SoftSkills: ISkill[] = [
   { label: "Teamwork", icon: TeamworkIcon },
   { label: "Communication", icon: CommunicationIcon },
   { label: "Time Management", icon: TimeIcon },
@@ -124,11 +125,11 @@ function About() {
   const { t } = useTranslation();
 
   // GSAP
-  const motorcycleImageRef = useRef<HTMLImageElement>(null);
-  const seeSkillsButtonRef = useRef<any>(null);
-  const techToolRef = useRef(null);
-  const softRef = useRef(null);
-  const langRef = useRef(null);
+  const motorcycleImageRef = useRef<HTMLImageElement | null>(null);
+  const seeSkillsButtonRef = useRef<HTMLButtonElement | null>(null);
+  const techToolRef = useRef<HTMLDivElement | null>(null);
+  const softRef = useRef<HTMLDivElement | null>(null);
+  const langRef = useRef<HTMLDivElement | null>(null);
 
   const { handleFlipAnimation } = AboutGSAPAnimation({
     motorcycleImageRef: motorcycleImageRef,
