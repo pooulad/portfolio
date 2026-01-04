@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { MouseEvent, RefObject, useEffect, useRef, useState } from "react";
 import useFlipAnimation from "../../../../hooks/gsap/useFlipAnimation";
 import useHandShakeAnimation from "../../../../hooks/gsap/useHandShakeAnimation";
 import gsap from "gsap";
 import useRotateIconAnimation from "../../../../hooks/gsap/useRotateIconAnimation";
 
 interface HomeGSAPAnimationProps {
-  programmerImageRef: any;
+  programmerImageRef: RefObject<HTMLImageElement | null>;
   programmerImageID: string;
   handeShakeID: string;
-  introduceImageRef: any;
-  introduceTextRef: any;
-  socialsIconRef: any;
-  readMoreButtonRef: any;
-  programmerIntroduceImageRef: any;
+  introduceImageRef: RefObject<HTMLImageElement | null>;
+  introduceTextRef: RefObject<HTMLDivElement | null>;
+  socialsIconRef: RefObject<HTMLDivElement | null>;
+  readMoreButtonRef: RefObject<HTMLButtonElement | null>;
+  programmerIntroduceImageRef: RefObject<HTMLImageElement | null>;
 }
 
 export default function HomeGSAPAnimation({
@@ -89,7 +89,7 @@ export default function HomeGSAPAnimation({
   // introduceImageRef
 
   // programmerIntroduceImageRef
-  const onMouseMoveTiltEffect = (e: React.MouseEvent) => {
+  const onMouseMoveTiltEffect = (e: MouseEvent) => {
     if (!programmerIntroduceImageRef.current) return;
     const rect = programmerIntroduceImageRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -151,14 +151,15 @@ export default function HomeGSAPAnimation({
 
   // introduceTextRef
   useEffect(() => {
-    if (!introduceTextRef.current) return;
+    const section = introduceTextRef.current;
+    if (!section) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !introduceTextAnimated) {
             setIntroduceTextAnimated(true);
             gsap.fromTo(
-              introduceTextRef.current.querySelectorAll("span"),
+              section.querySelectorAll("span"),
               { y: 50, opacity: 0 },
               {
                 y: 0,
@@ -174,21 +175,22 @@ export default function HomeGSAPAnimation({
       },
       { threshold: 0.5 }
     );
-    observer.observe(introduceTextRef.current);
+    observer.observe(section);
     return () => observer.disconnect();
   }, [introduceTextAnimated]);
   // introduceTextRef
 
   // socialsIconRef
   useEffect(() => {
-    if (!socialsIconRef.current) return;
+    const section = socialsIconRef.current;
+    if (!section) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !socialsIconAnimated) {
             setSocialsIconAnimated(true);
             gsap.fromTo(
-              socialsIconRef.current,
+              section,
               { y: 50, opacity: 0 },
               {
                 y: 0,
@@ -203,7 +205,7 @@ export default function HomeGSAPAnimation({
       },
       { threshold: 0.5 }
     );
-    observer.observe(socialsIconRef.current);
+    observer.observe(section);
     return () => observer.disconnect();
   }, [socialsIconAnimated]);
   // socialsIconRef

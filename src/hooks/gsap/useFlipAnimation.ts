@@ -1,16 +1,18 @@
+import { useState, RefObject } from "react";
 import gsap from "gsap";
-import { useState } from "react";
 
-export default function useFlipAnimation(ref: any) {
-  const [flipped, setFlipped] = useState<boolean>(false);
+export default function useFlipAnimation<T extends HTMLElement>(
+  ref: RefObject<T | null>
+) {
+  const [flipped, setFlipped] = useState(false);
   const handleFlipAnimation = () => {
+    if (!ref.current) return;
     gsap.to(ref.current, {
       scaleX: flipped ? 1 : -1,
       duration: 0.8,
       ease: "power2.inOut",
     });
-    setFlipped(!flipped);
+    setFlipped((prev) => !prev);
   };
-
   return { handleFlipAnimation };
 }

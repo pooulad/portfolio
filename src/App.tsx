@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { router } from "./configs/router/Router";
 import { RouterProvider } from "react-router-dom";
 import { ILanguage, languageList } from "./configs/language/utils";
-import "./App.css";
 import { Provider } from "react-redux";
 import Theme from "./configs/theme/MuiTheme";
 import { store } from "./app/store";
 import { Toaster } from "react-hot-toast";
+import "./App.css";
 
 function App() {
   const currentLanguageCode = Cookies.get("i18next") || "en";

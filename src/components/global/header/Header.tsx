@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { Fragment, useContext, useRef, useState } from "react";
+import { Fragment, MouseEvent, useContext, useRef, useState } from "react";
 import MusicUrl from "../../../assets/music/embrace.mp3";
 import { ColorModeContext } from "../../../configs/theme/MuiTheme";
 import HeaderGSAPAnimation from "../animation/gsap/headerGSAPAnimation";
@@ -18,25 +18,21 @@ import { useTranslation } from "react-i18next";
 
 function Header() {
   const colorMode = useContext(ColorModeContext);
-
   const navigate = useNavigate();
-
   const theme = useTheme();
-
   const { t } = useTranslation();
-
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openMenu = (event: any) => setAnchorEl(event.currentTarget);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const openMenu = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget);
   const closeMenu = () => setAnchorEl(null);
 
   // GSAP
-  const musicRef = useRef<any>(null);
-  const musicIconRef = useRef<any>(null);
-  const tweenRef = useRef<any>(null);
+  const musicRef = useRef<HTMLAudioElement>(null);
+  const musicIconRef = useRef<SVGSVGElement>(null);
+  const tweenRef = useRef<GSAPTween | null>(null);
   const switchButtonRef = useRef<SVGSVGElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const menuIconRef = useRef<any>(null);
+  const menuIconRef = useRef<HTMLButtonElement>(null);
 
   const {
     handleLogoShake,

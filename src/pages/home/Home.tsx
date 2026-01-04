@@ -9,9 +9,9 @@ function Home() {
   const theme = useTheme();
 
   // GSAP
-  const programmerImageRef = useRef(null);
-  const introduceImageRef = useRef(null);
-  const introduceTextRef = useRef(null);
+  const programmerImageRef = useRef<HTMLImageElement | null>(null);
+  const introduceImageRef = useRef<HTMLImageElement | null>(null);
+  const introduceTextRef = useRef<HTMLDivElement | null>(null);
   const socialsIconRef = useRef(null);
   const readMoreButtonRef = useRef<HTMLButtonElement>(null);
   const programmerIntroduceImageRef = useRef(null);

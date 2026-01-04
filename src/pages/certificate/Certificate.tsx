@@ -113,7 +113,7 @@ export const CertificatesData: Certification[] = [
 function Certificate() {
   const { t } = useTranslation()
   // GSAP
-  const listRef = useRef<any>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   CertificatesGSAPAnimation({ listRef });
   // GSAP

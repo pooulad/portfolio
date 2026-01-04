@@ -2,16 +2,17 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import ProgrammerIntroduceImage from "../../../assets/images/programmer_introduce.png";
 import { useTranslation } from "react-i18next";
 import { HashLink } from "react-router-hash-link";
+import { MouseEventHandler, RefObject } from "react";
 
 interface IntroduceProps {
-  ellipse1: any;
-  ellipse2: any;
-  ellipse3: any;
-  introduceTextRef: any;
-  readMoreButtonRef: any;
-  programmerIntroduceImageRef: any;
-  onMouseMoveTiltEffect: any;
-  onMouseLeaveTiltEffect: any;
+  ellipse1: RefObject<SVGEllipseElement | null>;
+  ellipse2: RefObject<SVGEllipseElement | null>;
+  ellipse3: RefObject<SVGEllipseElement | null>;
+  introduceTextRef: RefObject<HTMLDivElement | null>;
+  readMoreButtonRef: RefObject<HTMLButtonElement | null>;
+  programmerIntroduceImageRef: RefObject<HTMLImageElement | null>;
+  onMouseMoveTiltEffect: MouseEventHandler;
+  onMouseLeaveTiltEffect: MouseEventHandler<HTMLDivElement | null>;
 }
 
 function Introduce({
@@ -24,7 +25,7 @@ function Introduce({
   onMouseLeaveTiltEffect,
   onMouseMoveTiltEffect,
 }: IntroduceProps) {
-  const AnyLink = HashLink as any;
+  const LinkToTargetHash = HashLink;
 
   const theme = useTheme();
 
@@ -207,7 +208,7 @@ function Introduce({
         <Typography sx={{ fontSize: "20px" }} variant="h2" gutterBottom>
           <span>{t("introduce_sentence_5")}</span>
         </Typography>
-        <AnyLink smooth to="/about#intro">
+        <LinkToTargetHash smooth to="/about#intro">
           <Button
             ref={readMoreButtonRef}
             variant="contained"
@@ -224,7 +225,7 @@ function Introduce({
           >
             {t("more_about_me")}
           </Button>
-        </AnyLink>
+        </LinkToTargetHash>
       </Box>
     </Box>
   );
